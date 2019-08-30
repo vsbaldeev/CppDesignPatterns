@@ -9,6 +9,9 @@
 class Logger
 {
 public:
+     Logger(std::unique_ptr<StreamBehavior>&& sb, std::unique_ptr<FormatTextBehavior>&& ftb) :
+          sb_(std::move(sb)), ftb_(std::move(std::move(ftb)))
+     {}
      void setWriteBehavior(std::unique_ptr<StreamBehavior>&& sb) {
           sb_ = std::move(sb);
      }
