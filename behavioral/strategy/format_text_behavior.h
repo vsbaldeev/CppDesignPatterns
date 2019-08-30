@@ -23,10 +23,11 @@ class UpperTextBehavior : public FormatTextBehavior
 {
 public:
      std::string format( const std::string& text ) override {
-          std::string upper_string = text;
-          std::for_each( upper_string.begin(),
-                         upper_string.end(),
-                         []( std::string::value_type c ) { return std::toupper( c ); } );
+          std::string upper_string;
+          std::transform( text.begin(),
+                          text.end(),
+                          std::back_inserter(upper_string),
+                          []( std::string::value_type c ) { return std::toupper( c ); } );
           return upper_string;
      }
 };
