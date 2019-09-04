@@ -9,6 +9,7 @@ class StreamBehavior
 {
 public:
      virtual void write(const std::string& text) = 0;
+     virtual ~StreamBehavior() = default;
 };
 
 class StdStreamWriter : public StreamBehavior

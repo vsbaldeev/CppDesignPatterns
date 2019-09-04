@@ -9,6 +9,7 @@ class FormatTextBehavior
 {
 public:
      virtual std::string format(const std::string& text) = 0;
+     virtual ~FormatTextBehavior() = default;
 };
 
 class AsIsTextBehavior : public FormatTextBehavior
