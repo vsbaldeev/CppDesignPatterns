@@ -10,16 +10,16 @@ public:
      IntState();
      explicit IntState(int state);
 
-     void addObserver( Observer& observer) override;
-     void removeObserver( Observer& observer) override;
-     void notifyObservers() override;
+     void addObserver(std::shared_ptr<Observer> observer) override;
+     void removeObserver(std::shared_ptr<Observer> observer) override;
+     void notifyObservers() const override;
 
      void set(int new_state);
-     int get();
+     int get() const;
      void stateChanged();
 
 private:
-     std::vector<Observer*> observers_;
+     std::vector<std::weak_ptr<Observer>> observers_;
      int state_;
 };
 

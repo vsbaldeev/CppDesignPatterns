@@ -11,22 +11,26 @@ IntState::IntState(int state) :
      state_(state)
 {}
 
-void IntState::addObserver(Observer& observer)
+void IntState::addObserver(std::shared_ptr<Observer> observer)
 {
-     observers_.emplace_back(&observer);
+     observers_.emplace_back(observer);
 }
 
-void IntState::removeObserver(Observer& observer)
+void IntState::removeObserver(std::shared_ptr<Observer> observer)
 {
-     observers_.erase(std::remove( observers_.begin(), observers_.end(), &observer),
-                       observers_.end());
+     const auto remove_if_lambda = [&observer]( std::weak_ptr<Observer>& weak_observer) {
+          return weak_observer.lock() == observer;
+     };
+
+     const auto remove_if_iter = std::remove_if(observers_.begin(), observers_.end(), remove_if_lambda);
+     observers_.erase(remove_if_iter, observers_.end());
 }
 
-void IntState::notifyObservers()
+void IntState::notifyObservers() const
 {
      std::for_each(observers_.begin(),
                    observers_.end(),
-                   [](Observer* observer_ptr) { observer_ptr->update(); });
+                   [this](const std::weak_ptr<Observer>& observer_ptr) { observer_ptr.lock()->update(*this); });
 }
 
 void IntState::set(int new_state)
@@ -34,7 +38,7 @@ void IntState::set(int new_state)
      state_ = new_state;
 }
 
-int IntState::get()
+int IntState::get() const
 {
      return state_;
 }

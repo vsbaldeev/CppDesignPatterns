@@ -9,13 +9,7 @@ class Observable;
 class IntObserver : public Observer
 {
 public:
-     explicit IntObserver(Observable* observable);
-     ~IntObserver() override;
-
-     void update() override;
-
-private:
-     Observable* observable_;
+     void update(const Observable& observable) override;
 };
 
 #endif //CPP_DESIGN_PATTERNS_INT_OBSERVER_H

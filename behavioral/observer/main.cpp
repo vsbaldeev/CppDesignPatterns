@@ -3,7 +3,8 @@
 
 int main() {
      IntState int_state(5);
-     IntObserver observer(&int_state);
+     auto shared_int_observer = std::make_shared<IntObserver>();
+     int_state.addObserver(shared_int_observer);
 
      int_state.set(7);
      int_state.stateChanged();
@@ -12,7 +13,7 @@ int main() {
      int_state.stateChanged();
 
      // remove notificaton
-     int_state.removeObserver(observer);
+     int_state.removeObserver(shared_int_observer);
      int_state.set(10);
      return 0;
 }
