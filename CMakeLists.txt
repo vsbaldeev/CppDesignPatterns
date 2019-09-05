@@ -14,3 +14,14 @@ set(STRATEGY_SOURCE_FILES
      behavioral/strategy/main.cpp)
 set(STRATEGY_EXECUTABLE_NAME strategy_example)
 add_executable(${STRATEGY_EXECUTABLE_NAME} ${STRATEGY_SOURCE_FILES})
+
+set(OBSERVER_SOURCE_FILES
+     behavioral/observer/observable.h
+     behavioral/observer/observer.h
+     behavioral/observer/int_state.h
+     behavioral/observer/int_state.cpp
+     behavioral/observer/int_observer.h
+     behavioral/observer/int_observer.cpp
+     behavioral/observer/main.cpp)
+set(OBSERVER_EXECUTABLE_EXAMPLE observer_example)
+add_executable(${OBSERVER_EXECUTABLE_EXAMPLE} ${OBSERVER_SOURCE_FILES})
