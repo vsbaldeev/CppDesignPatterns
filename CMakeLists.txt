@@ -25,3 +25,20 @@ set(OBSERVER_SOURCE_FILES
      behavioral/observer/main.cpp)
 set(OBSERVER_EXECUTABLE_EXAMPLE observer_example)
 add_executable(${OBSERVER_EXECUTABLE_EXAMPLE} ${OBSERVER_SOURCE_FILES})
+
+set(DECORATOR_SOURCE_FILES
+     behavioral/decorator/beverage.h
+     behavioral/decorator/cappucino.h
+     behavioral/decorator/cappucino.cpp
+     behavioral/decorator/latte.h
+     behavioral/decorator/latte.cpp
+     behavioral/decorator/beverage_with_condiment.h
+     behavioral/decorator/beverage_with_condiment.cpp
+     behavioral/decorator/milk.h
+     behavioral/decorator/milk.cpp
+     behavioral/decorator/whip.h
+     behavioral/decorator/whip.cpp
+     behavioral/decorator/chocolate.h
+     behavioral/decorator/chocolate.cpp
+     behavioral/decorator/main.cpp)
+add_executable(decorator_example ${DECORATOR_SOURCE_FILES})
